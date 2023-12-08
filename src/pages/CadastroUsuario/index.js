@@ -2,6 +2,8 @@ import { useState } from "react";
 import {auth } from'../../firebase/firebaseConection'
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
+import './CadastroUsuario.css'
+
 const CadastroUsuario = () => {
 
     const [email, setEmail] = useState('')
@@ -26,7 +28,7 @@ const CadastroUsuario = () => {
     }
   
   return (
-    <div>
+    <div className="container_cadastro">
         <h1>Explorando React com Firebase</h1>
       <form>
         <label>Email:</label>
@@ -50,7 +52,7 @@ const CadastroUsuario = () => {
         <label>Confirmação de senha</label>
         <input 
           type="password" 
-          placeholder="Digite sua senha" 
+          placeholder="Confime sua senha sua senha" 
           value={confirmacaoDeSenha}
           onChange={(e) => setConfirmacaoDeSenha(e.target.value)}
           required
