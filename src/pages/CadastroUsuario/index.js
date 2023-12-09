@@ -3,23 +3,29 @@ import {auth } from'../../firebase/firebaseConection'
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 import './CadastroUsuario.css'
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const CadastroUsuario = () => {
 
     const [email, setEmail] = useState('')
     const[senha, setSenha] = useState('')
     const [confirmacaoDeSenha, setConfirmacaoDeSenha] = useState('')
+
+    const navigate = useNavigate()
   
-    async function cadastroUsuario(){
-  
+    async function handleSubmit(e){
+       e.preventDefault()
+
       if(senha !== confirmacaoDeSenha){
-        console.error('Erro: A senha e a confirmação de senha não são iguais')
+        toast.error(`As senhas devem ser iguais`)
         return
       }
   
       try{
         await createUserWithEmailAndPassword(auth, email, senha)
-        console.log('Usuário cadastrado')
+        toast.success('Usuário cadastrado com sucesso!')
+        navigate('/posts')
       }
       catch(error){
           console.log('Usuário não cadastrado', error)
@@ -30,7 +36,7 @@ const CadastroUsuario = () => {
   return (
     <div className="container_cadastro">
         <h1>Explorando React com Firebase</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>Email:</label>
         <input 
           type="text" 
@@ -57,7 +63,7 @@ const CadastroUsuario = () => {
           onChange={(e) => setConfirmacaoDeSenha(e.target.value)}
           required
         />
-        <button onClick={cadastroUsuario}>cadastar</button>
+        <button>cadastar</button>
       </form>
     </div>
   )

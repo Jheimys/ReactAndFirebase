@@ -10,27 +10,18 @@ import Posts from "./pages/Posts";
 //componentes
 import Navbar from "./component/Navbar";
 
-//firebase
-import { onAuthStateChanged } from 'firebase/auth';
-import {auth} from './firebase/firebaseConection'
+
 
 //Hoolk
-import { useEffect, useState } from "react";
-
+import useAuth from "./hoolk/useAuth";
 
 function App() {
-  const [user, setUser] = useState(undefined)
 
-  const loadingUser = user === undefined
+  const { user, loadingUser } = useAuth()
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) =>{
-      setUser(user)
-    })
-  }, [])
 
   if(loadingUser){
-    return <p>Caregando ...</p>
+     return <p>Caregando ...</p>
   }
 
   return (
