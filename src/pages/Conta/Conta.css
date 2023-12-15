@@ -1,0 +1,64 @@
+/* Conta.css */
+
+.conta-container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 8px;
+}
+  
+h2 {
+    color: #333;
+}
+  
+.foto-perfil {
+    border-radius: 50%;
+    margin-top: 10px;
+    max-width: 100%;
+    height: 200px;
+    width: 200px;
+    /* border: 2px solid #3498db;  */
+}
+
+.alterar-imagem-label {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+  
+/* Estilo adicional para melhorar a experiência do usuário ao passar o mouse sobre o rótulo */
+.alterar-imagem-label:hover {
+    background-color: #2980b9;
+}
+
+input {
+    margin-top: 10px;
+    width: 100%; /* Ajustar a largura do input para 100% do contêiner pai */
+}
+  
+p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.span-conta{
+    font-weight: bold;
+    font-size: 1.1em; 
+}
+  
+/* Adicionar regras de mídia para dispositivos pequenos */
+@media screen and (max-width: 600px) {
+    .conta-container {
+      max-width: 100%;
+    }
+}
