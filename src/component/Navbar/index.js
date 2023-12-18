@@ -27,6 +27,7 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
+      <span>ReactFlix</span>
       <ul>
         {!user && (
           <>
@@ -47,7 +48,7 @@ const Navbar = () => {
         {user && (
           <>
             <li>
-              <Link to="/filmes">Filmes</Link>
+              <Link to="/home">Home</Link>
             </li>
           </>
         )}

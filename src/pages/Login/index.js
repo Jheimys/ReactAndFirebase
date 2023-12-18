@@ -23,7 +23,7 @@ function Login() {
       console.log("Usuário logado com sucesso!");
       toast.success("Usuário logado com sucesso!");
 
-      navigate("/filmes");
+      navigate("/home");
     } catch (error) {
       console.error("Erro ao logar:", error.message);
       // Adicione feedback visual para o usuário, se necessário.

@@ -5,14 +5,14 @@ import "react-toastify/dist/ReactToastify.css";
 //Pages
 import CadastroUsuario from "./pages/CadastroUsuario";
 import Login from "./pages/Login";
-import Filmes from "./pages/Filmes";
+import Conta from "./pages/Conta";
+import Home from "./pages/Home";
 
 //componentes
 import Navbar from "./component/Navbar";
 
 //Hoolk
 import useAuth from "./hoolk/useAuth";
-import Conta from "./pages/Conta";
 
 function App() {
   const { user, loadingUser } = useAuth();
@@ -31,8 +31,8 @@ function App() {
           <Route path="/cadastro" element={<CadastroUsuario />} />
 
           <Route
-            path="/filmes"
-            element={user ? <Filmes /> : <Login to="/login" />}
+            path="/home"
+            element={user ? <Home /> : <Login to="/login" />}
           />
         </Route>
         <Route

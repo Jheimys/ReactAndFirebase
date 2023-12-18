@@ -29,7 +29,7 @@ const CadastroUsuario = () => {
       await updateProfile(auth.currentUser, { displayName: nome });
 
       toast.success("Usuário cadastrado com sucesso!");
-      navigate("/filmes");
+      navigate("/home");
     } catch (error) {
       console.log("Usuário não cadastrado", error);
     }
