@@ -49,14 +49,26 @@
   font-size: 17px;
 }  
 
+.menu-icon {
+  display: none; /* Inicialmente oculto em telas maiores */
+  cursor: pointer;
+  /* Adicione estilos para o ícone do menu, como cor, tamanho, etc. */
+}
+
+.mobile-menu {
+  display: none;
+  /* Adicione estilos para o menu suspenso em telas pequenas */
+}
+
 @media screen and (max-width: 768px) {
   .navbar {
-    flex-direction: column; /* Coluna em vez de linha */
-    align-items: center; /* Alinha itens ao centro na coluna */
+    flex-direction: row-reverse;
+    height: 60px; 
   }
 
   .logo {
-    margin-right: 0; /* Remove margem para alinhar à esquerda */
+    margin-right: auto;
+    margin-left: auto;
   }
 
   .container-lis {
@@ -68,9 +80,81 @@
   }
 
   .container-lis li {
-    margin-right: 0; /* Remove margem para empilhar itens na coluna */
-    margin-bottom: 10px; /* Adiciona espaçamento entre itens na coluna */
+    margin-right: 0; 
+    margin-bottom: 10px; 
   }
+
+  /* menu hamburguer */
+
+  .menu-icon {
+    display: block;
+    font-size: 25px;
+    color: white;
+    position: fixed;
+    top: 10px; 
+    left: 10px; 
+    z-index: 1000;
+  }
+
+  .container-lis {
+    display: none; 
+  }
+
+  .mobile-menu {
+    display: block;
+    position: fixed;
+    top: 20px; /* Ajuste conforme necessário para a altura do navbar */
+    left: 0;
+    width: 25%;
+    background-color: #333;
+  }
+
+  .mobile-menu ul {
+    list-style: none;
+    margin: 15px  auto;
+    padding: 20px;
+  }
+
+  .mobile-menu li {
+    margin-top: 10px;
+  }
+
+
+  .mobile-menu li a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+  }
+/* 
+  .mobile-menu li:hover{
+    color: red;
+  } */
+
+  .mobile-menu.menu-open li {
+  margin-top: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Adiciona uma transição suave para transform */
+}
+
+.mobile-menu.menu-open li:hover {
+  background-color: #555; /* Cor de fundo ao passar o mouse */
+}
+
+.mobile-menu.menu-open li a {
+  text-decoration: none;
+  color: white; /* Cor do texto normal */
+  font-weight: bold;
+  transition: color 0.3s ease; /* Adiciona uma transição suave para a cor do texto */
+}
+
+.mobile-menu.menu-open li:hover a {
+  color: red; /* Cor do texto ao passar o mouse */
+}
+
+/* Efeito de escala ao passar o mouse ou toque */
+.mobile-menu.menu-open li:hover {
+  transform: scale(1.1); /* Aumenta o tamanho da fonte em 10% ao passar o mouse */
+}
+ 
 }
 
 

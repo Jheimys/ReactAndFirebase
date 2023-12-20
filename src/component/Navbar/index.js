@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hoolk/useAuth";
 
@@ -8,8 +9,14 @@ import "./Navbar.css";
 
 import logo from "../../img/reactflix30.png";
 
+//Menu Hamburger
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+
 const Navbar = () => {
   const { user, loadingUser } = useAuth();
+  const [isMenuOpen, setMenuOpen] = useState(false);
+
   const navigate = useNavigate();
 
   if (loadingUser) {
@@ -28,7 +35,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${isMenuOpen ? "menu-open" : ""}`}>
       <div className="logo">
         <img
           className="img-logo"
@@ -81,6 +88,50 @@ const Navbar = () => {
           )}
         </ul>
       </div>
+
+      {/* Menu Hambuguer */}
+      <div className="menu-icon" onClick={() => setMenuOpen(!isMenuOpen)}>
+        <FontAwesomeIcon icon={faBars} />
+      </div>
+
+      {isMenuOpen && (
+        <div className="mobile-menu ">
+          {/* Links do menu para dispositivos móveis */}
+          <ul>
+            {user && (
+              <li>
+                <Link to="/home">Home</Link>
+              </li>
+            )}
+
+            {user && (
+              <li>
+                <Link to="/conta">Minha conta</Link>
+              </li>
+            )}
+            <li>
+              {user && (
+                <li>
+                  <Link to="/" onClick={() => handleLogout}>
+                    Sair
+                  </Link>
+                </li>
+              )}
+            </li>
+
+            {!user && (
+              <li>
+                <Link to="/">Login</Link>
+              </li>
+            )}
+            {!user && (
+              <li>
+                <Link to="/cadastro">Cadastrar</Link>
+              </li>
+            )}
+          </ul>
+        </div>
+      )}
     </nav>
   );
 };
