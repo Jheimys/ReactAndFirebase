@@ -112,7 +112,7 @@ const Navbar = () => {
             <li>
               {user && (
                 <li>
-                  <Link to="/" onClick={() => handleLogout}>
+                  <Link to="/" onClick={() => handleLogout()}>
                     Sair
                   </Link>
                 </li>

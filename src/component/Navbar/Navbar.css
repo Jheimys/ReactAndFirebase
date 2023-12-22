@@ -64,6 +64,7 @@
   .navbar {
     flex-direction: row-reverse;
     height: 60px; 
+    /* width: 100%; */
   }
 
   .logo {
@@ -125,36 +126,33 @@
     color: white;
     font-weight: bold;
   }
-/* 
-  .mobile-menu li:hover{
-    color: red;
-  } */
 
   .mobile-menu.menu-open li {
-  margin-top: 10px;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Adiciona uma transição suave para transform */
-}
+    margin-top: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; /* Adiciona uma transição suave para transform */
+  }
 
-.mobile-menu.menu-open li:hover {
-  background-color: #555; /* Cor de fundo ao passar o mouse */
-}
+ .mobile-menu.menu-open li:hover {
+    background-color: #555; /* Cor de fundo ao passar o mouse */
+  }
 
-.mobile-menu.menu-open li a {
-  text-decoration: none;
-  color: white; /* Cor do texto normal */
-  font-weight: bold;
-  transition: color 0.3s ease; /* Adiciona uma transição suave para a cor do texto */
-}
+  .mobile-menu.menu-open li a {
+    text-decoration: none;
+    color: white; /* Cor do texto normal */
+    font-weight: bold;
+    transition: color 0.3s ease; /* Adiciona uma transição suave para a cor do texto */
+  }
 
-.mobile-menu.menu-open li:hover a {
-  color: red; /* Cor do texto ao passar o mouse */
-}
+  .mobile-menu.menu-open li:hover a {
+    color: red; /* Cor do texto ao passar o mouse */
+  }
 
-/* Efeito de escala ao passar o mouse ou toque */
-.mobile-menu.menu-open li:hover {
-  transform: scale(1.1); /* Aumenta o tamanho da fonte em 10% ao passar o mouse */
-}
+  /* Efeito de escala ao passar o mouse ou toque */
+  .mobile-menu.menu-open li:hover {
+    transform: scale(1.1); /* Aumenta o tamanho da fonte em 10% ao passar o mouse */
+  }
  
 }
+
 
 
