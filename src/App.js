@@ -7,6 +7,7 @@ import CadastroUsuario from "./pages/CadastroUsuario";
 import Login from "./pages/Login";
 import Conta from "./pages/Conta";
 import Home from "./pages/Home";
+import Filme from "./pages/Filme";
 
 //componentes
 import Navbar from "./component/Navbar";
@@ -38,6 +39,10 @@ function App() {
         <Route
           path="/conta"
           element={user ? <Conta /> : <Login to="/login" />}
+        />
+        <Route
+          path="/filme/:id"
+          element={user ? <Filme /> : <Login to="/login" />}
         />
       </Routes>
     </BrowserRouter>

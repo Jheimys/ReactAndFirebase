@@ -17,7 +17,7 @@ const Home = () => {
         },
       });
 
-      // console.log(response.data.results.slice(0, 10));
+      //console.log("Resposta da home", response.data.results);
       setFilmes(response.data.results);
     }
 
