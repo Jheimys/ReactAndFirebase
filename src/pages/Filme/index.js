@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../../server/api";
 
+import { db } from "../../firebase/firebaseConection";
+
 import "./Filme.css";
+import { addDoc, collection } from "firebase/firestore";
 
 const Filme = () => {
   const { id } = useParams();
@@ -36,7 +39,17 @@ const Filme = () => {
     loadFilme();
   }, [id, navigate]);
 
-  const salvarFilmes = () => {};
+  const salvarFilmes = async (filme) => {
+    console.log("Dados do filmes obtido pelo btn Salvar:", filme.title);
+    try {
+      const filmeName = await addDoc(collection(db, "filmes"), {
+        title: filme.title,
+      });
+      console.log("Filme salvo no Firestore com ID:", filmeName.id);
+    } catch (error) {
+      console.error("Erro ao salvar o filme no Firestore:", error);
+    }
+  };
 
   if (loading) {
     return (
@@ -56,10 +69,10 @@ const Filme = () => {
       />
       <h3>Sinopse</h3>
       <span>{filme.overview}</span>
-      <strong>Avaliação: {filme.vote_average}/ 10</strong>
+      <strong>Avaliação: {filme.vote_average.toFixed(1)}/ 10</strong>
 
       <div className="area-buttons">
-        <button onClick={() => salvarFilmes()}>Salvar</button>
+        <button onClick={() => salvarFilmes(filme)}>Salvar</button>
         <button>
           <a
             href={`https://www.youtube.com/results?search_query=${filme.title} trailer`}
