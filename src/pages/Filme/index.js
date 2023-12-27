@@ -7,6 +7,9 @@ import { db } from "../../firebase/firebaseConection";
 import "./Filme.css";
 import { addDoc, collection } from "firebase/firestore";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Filme = () => {
   const { id } = useParams();
   // console.log(id);
@@ -40,14 +43,34 @@ const Filme = () => {
   }, [id, navigate]);
 
   const salvarFilmes = async (filme) => {
-    console.log("Dados do filmes obtido pelo btn Salvar:", filme.title);
+    //console.log("Dados do filmes obtido pelo btn Salvar:", filme.title);
     try {
       const filmeName = await addDoc(collection(db, "filmes"), {
         title: filme.title,
       });
       console.log("Filme salvo no Firestore com ID:", filmeName.id);
+      
+      // Show success toast
+      toast.success('Filme salvo com sucesso!', {
+        position: "top-right",
+        autoClose: 1000, // Close the toast after 3000 milliseconds (3 seconds)
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+
     } catch (error) {
       console.error("Erro ao salvar o filme no Firestore:", error);
+      // Show error toast
+      toast.error('Erro ao salvar o filme.', {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+    });
     }
   };
 
@@ -83,6 +106,9 @@ const Filme = () => {
           </a>
         </button>
       </div>
+
+       {/* Render the ToastContainer */}
+       <ToastContainer />
     </div>
   );
 };

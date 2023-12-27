@@ -72,6 +72,15 @@ const Navbar = () => {
           )}
 
           {user && (
+              <>
+                <li>
+                    <Link to="/favoritos">Favoritos</Link>
+                  </li>
+              </>
+          )}
+
+
+          {user && (
             <>
               <li>
                 <Link to="/conta">Minha conta</Link>
@@ -101,6 +110,12 @@ const Navbar = () => {
             {user && (
               <li>
                 <Link to="/home">Home</Link>
+              </li>
+            )}
+
+            {user && (
+              <li>
+                <Link to="/favoritos">Favoritos</Link>
               </li>
             )}
 

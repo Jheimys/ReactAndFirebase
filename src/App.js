@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Conta from "./pages/Conta";
 import Home from "./pages/Home";
 import Filme from "./pages/Filme";
+import Favoritos from "./pages/Favoritos";
 
 //componentes
 import Navbar from "./component/Navbar";
@@ -43,6 +44,11 @@ function App() {
         <Route
           path="/filme/:id"
           element={user ? <Filme /> : <Login to="/login" />}
+        />
+
+        <Route 
+          path="/favoritos"
+          element={user ? <Favoritos /> : <Login to="/login" />}
         />
       </Routes>
     </BrowserRouter>
