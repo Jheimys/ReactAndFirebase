@@ -5,7 +5,7 @@ import api from "../../server/api";
 import { db } from "../../firebase/firebaseConection";
 
 import "./Filme.css";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -45,21 +45,40 @@ const Filme = () => {
   const salvarFilmes = async (filme) => {
     //console.log("Dados do filmes obtido pelo btn Salvar:", filme.title);
     try {
-      const filmeName = await addDoc(collection(db, "filmes"), {
-        title: filme.title,
-      });
-      console.log("Filme salvo no Firestore com ID:", filmeName.id);
-      
-      // Show success toast
-      toast.success('Filme salvo com sucesso!', {
-        position: "top-right",
-        autoClose: 1000, // Close the toast after 3000 milliseconds (3 seconds)
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
 
+      const filmesCollection = collection(db, "filmes")
+
+      //Verificar se o filme existe na coleção
+      const querySnapshort = await getDocs(filmesCollection)
+      const filmeExistente = querySnapshort.docs.find((doc) => (
+        doc.data().title === filme.title
+      ))
+
+      if(filmeExistente){
+        toast.warning('Este filme já foi salvo anteriormente.', {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      } else {
+        const filmeName = await addDoc(collection(db, "filmes"), {
+          title: filme.title,
+        });
+
+        console.log("Filme salvo no Firestore com ID:", filmeName.id);
+        // Show success toast
+        toast.success('Filme salvo com sucesso!', {
+          position: "top-right",
+          autoClose: 1000, // Close the toast after 3000 milliseconds (3 seconds)
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      }
     } catch (error) {
       console.error("Erro ao salvar o filme no Firestore:", error);
       // Show error toast
