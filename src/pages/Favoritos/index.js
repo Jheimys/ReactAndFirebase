@@ -2,6 +2,8 @@ import { collection, query, where, getDocs, deleteDoc, doc } from "firebase/fire
 import { db } from "../../firebase/firebaseConection";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import './Favoritos.css'
+
 
 const Favoritos = () => {
 
@@ -15,12 +17,14 @@ const Favoritos = () => {
         const q = query(collection(db, "filmes"), where("title", "!=", ""))
         const querySnapshort = await getDocs(q)
 
-        //console.log("consulta no BD: ",querySnapshort)
+        
+        console.log("consulta no BD: ", querySnapshort)
+
         const filmesFavoritos = []
 
         querySnapshort.forEach((doc) => {
-          const filme = doc.data()
-          filmesFavoritos.push({id: doc.id, ...filme})
+          const filmeData = doc.data();
+          filmesFavoritos.push({ ...filmeData, id: doc.id }); // Inclua o ID do documento
         })
         
         console.log(`Filmes favoritos:`, filmesFavoritos)
@@ -40,6 +44,7 @@ const Favoritos = () => {
     try {
       await deleteDoc(doc(db, "filmes", filmeId))
       setFavorito((excluirFavorito) => {
+        console.log("excluirFavorito:", excluirFavorito);
          return excluirFavorito.filter((filme) => filme.id !== filmeId )
       })
     } catch (error) {
@@ -48,12 +53,15 @@ const Favoritos = () => {
   }
 
   return (
-    <div>
+    <div className="favoritos-container">
+      <h1>Meus Filmes Favoritos</h1>
       {favorito.map((filme) => ( 
-        <div key={filme.id}>
-          <h2>{filme.title}</h2>
-          <button onClick={() => handleExcluir(filme.id)}>Excluir</button>
-          <button onClick={() => navigate("/home")}>Voltar para Home</button>
+        <div key={filme.id} className="favoritos-item">
+          <h3>{filme.title}</h3>
+          <div className="favoritos-item-btn">
+            <button onClick={() => handleExcluir(filme.id)}>Excluir</button>
+            <button onClick={() => navigate(`/filme/${filme.idAPI}`)}>Informação</button>
+          </div>
         </div>
       ))}
     </div>
