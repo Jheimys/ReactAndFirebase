@@ -15,6 +15,7 @@ import Navbar from "./component/Navbar";
 
 //Hoolk
 import useAuth from "./hoolk/useAuth";
+import Footer from "./component/Footer";
 
 function App() {
   const { user, loadingUser } = useAuth();
@@ -51,6 +52,7 @@ function App() {
           element={user ? <Favoritos /> : <Login to="/login" />}
         />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

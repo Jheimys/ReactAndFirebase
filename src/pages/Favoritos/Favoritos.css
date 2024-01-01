@@ -26,3 +26,21 @@
     height: 40px;
     margin: 15px;
 }
+
+@media screen and (max-width: 768px) {
+    /* Adjust padding for smaller screens */
+    .favoritos-item {
+        padding: 0 20px;
+        flex-direction: column;
+    }
+
+    /* Margin for h3 on smaller screens */
+    .favoritos-item h3 {
+        margin-left: 10px;
+    }
+
+    /* Adjust button margin for smaller screens */
+    .favoritos-item-btn button {
+        margin: 10px;
+    }
+}
