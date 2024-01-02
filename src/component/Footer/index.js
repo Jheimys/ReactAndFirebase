@@ -15,11 +15,11 @@ const Footer = () => {
         <p>Desenvolvido por James Bassani</p>
         <div className="social-logos">
           {/* LinkedIn Logo */}
-          <a href="https://www.linkedin.com/in/seu-linkedin" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.linkedin.com/in/jheimys/" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faLinkedin} size="2x" />
           </a>
           {/* GitHub Logo */}
-          <a href="https://github.com/seu-username" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/Jheimys" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faGithub} size="2x" />
           </a>
         </div>
