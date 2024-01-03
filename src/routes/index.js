@@ -24,15 +24,21 @@ const RoutesApp = () => {
   return (
     <div className="container-routesApp">
       <Routes>
-        <Route>
-          <Route path="/" element={<Login />} />
-          <Route path="/cadastro" element={<CadastroUsuario />} />
+        <Route 
+          path="/" 
+          element={<Login />} 
+          className={
+            window.innerWidth <= 600 ? 'container-routesApp-responsive' : 'container-routesApp'
+          }
+        />
+          
+        <Route path="/cadastro" element={<CadastroUsuario />} />
 
-          <Route
-            path="/home"
-            element={user ? <Home /> : <Login to="/login" />}
-          />
-        </Route>
+        <Route
+          path="/home"
+          element={user ? <Home /> : <Login to="/login" />}
+        />
+
         <Route
           path="/conta"
           element={user ? <Conta /> : <Login to="/login" />}

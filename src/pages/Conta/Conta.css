@@ -7,7 +7,7 @@
     align-items: center;
     flex-direction: column;
     max-width: 80%;
-    margin: 0 auto;
+    margin: 35px auto;
     padding: 30px;
     border-radius: 8px;
 }
@@ -60,5 +60,15 @@ p {
 @media screen and (max-width: 600px) {
     .conta-container {
       max-width: 100%;
+    }
+
+    input {
+        margin-top: 12px;
+    }
+}
+
+@media(max-width:310px){
+    p{
+        font-size: 14px;
     }
 }
