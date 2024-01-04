@@ -11,16 +11,16 @@
 }
   
 .social-logos {
-        margin-top: 10px;
+    margin-top: 10px;
 }
   
 .social-logos a {
-    margin: 0 10px; /* Espaçamento entre os ícones/link */
+    margin: 0 10px; 
     text-decoration: none;
-    color: #333; /* Cor do link */
+    color: #333; 
 }
   
 .social-logos a:hover {
-    color: #007bff; /* Cor do link ao passar o mouse (pode ajustar conforme necessário) */
+    color: #007bff; 
 }
 
