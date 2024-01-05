@@ -45,7 +45,7 @@ function Login() {
           required
         />
 
-        <label>Senha</label>
+        <label>Senha:</label>
         <input
           type="password"
           placeholder="Digite sua senha"

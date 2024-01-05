@@ -19,6 +19,10 @@ const Navbar = () => {
 
   const navigate = useNavigate();
 
+  const handleMenuItemClick = () => {
+    setMenuOpen(false); 
+  };
+
   if (loadingUser) {
     return <p>Carregando...</p>;
   }
@@ -108,25 +112,25 @@ const Navbar = () => {
           {/* Links do menu para dispositivos móveis */}
           <ul>
             {user && (
-              <li>
+              <li onClick={handleMenuItemClick}>
                 <Link to="/home">Home</Link>
               </li>
             )}
 
             {user && (
-              <li>
+              <li onClick={handleMenuItemClick}>
                 <Link to="/favoritos">Favoritos</Link>
               </li>
             )}
 
             {user && (
-              <li>
+              <li onClick={handleMenuItemClick}>
                 <Link to="/conta">Minha conta</Link>
               </li>
             )}
             <li>
               {user && (
-                <li>
+                <li onClick={handleMenuItemClick}>
                   <Link to="/" onClick={() => handleLogout()}>
                     Sair
                   </Link>
@@ -135,12 +139,12 @@ const Navbar = () => {
             </li>
 
             {!user && (
-              <li>
+              <li onClick={handleMenuItemClick}>
                 <Link to="/">Login</Link>
               </li>
             )}
             {!user && (
-              <li>
+              <li onClick={handleMenuItemClick}>
                 <Link to="/cadastro">Cadastrar</Link>
               </li>
             )}
