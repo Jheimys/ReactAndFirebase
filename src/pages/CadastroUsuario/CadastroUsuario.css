@@ -54,7 +54,12 @@ p {
 }
   
 /* Estilo adicional para tornar o layout mais responsivo */
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
+    .container_cadastro{
+        margin: 45px 45px;
+        padding: 65px 10px;
+    }
+
     input {
       width: 100%;
     }
