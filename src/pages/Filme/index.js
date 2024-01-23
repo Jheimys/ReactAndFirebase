@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../../server/api";
 
-import { db } from "../../firebase/firebaseConection";
+import {  db } from "../../firebase/firebaseConection";
 
 import "./Filme.css";
 import { addDoc, collection, getDocs } from "firebase/firestore";
@@ -13,9 +13,10 @@ import { FirebaseError } from "firebase/app";
 
 const Filme = () => {
   const { id } = useParams();
-  // console.log(id);
+
 
   const [filme, setFilme] = useState({});
+  const [user, setUser] = useState({})
   const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
@@ -44,10 +45,19 @@ const Filme = () => {
     loadFilme();
   }, [id, navigate]);
 
-  const salvarFilmes = async (filme) => {
-    console.log("Dados do filmes obtido pelo btn Salvar:", filme.title, filme.id);
-    console.log("verificando o tipo de filme.id:" , typeof(filme.id))
+  useEffect(() => {
+    const fetchUser = async () => {
+      const userDetail = localStorage.getItem("@userDetail")
+      const infoUser = JSON.parse(userDetail)
+      setUser(infoUser)
+      
+    }
 
+    fetchUser()
+  }, [])
+
+  const salvarFilmes = async (filme) => {
+   
     if (!filme || !filme.id) {
       console.error("Erro: Objeto filme inválido", filme);
       return;
@@ -78,7 +88,9 @@ const Filme = () => {
       } else {
         const filmeName = await addDoc(collection(db, "filmes"), {
           title: filme.title,
-          idAPI: filme.id,
+          filmeId: filme.id,
+          userUid: user.uid,
+          email: user.email
         })
 
         const filmeIdBD = filmeName.id; // Obter o ID gerado
@@ -97,7 +109,7 @@ const Filme = () => {
       }
     } catch (error) {
 
-      console.error("Erro ao salvar o filme no Firestore:", error);
+      console.log("Erro ao salvar o filme no Firestore:", error);
 
       if(error instanceof FirebaseError){
          // Show error toast
@@ -114,6 +126,8 @@ const Filme = () => {
     }
 
   };
+  
+
 
   if (loading) {
     return (

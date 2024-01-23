@@ -11,6 +11,14 @@ const useAuth = () => {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
+          
+          const userData = {
+            uid: user.uid,
+            email: user.email
+          }
+          
+          localStorage.setItem("@userDetail", JSON.stringify(userData))
+
           setUser(user);
         });
     

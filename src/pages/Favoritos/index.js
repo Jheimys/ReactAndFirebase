@@ -8,30 +8,32 @@ import './Favoritos.css'
 const Favoritos = () => {
 
   const [favorito, setFavorito] = useState([])
-
+  const [user, setUser] = useState({})
+  console.log(user)
   const navigate = useNavigate()
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const q = query(collection(db, "filmes"), where("title", "!=", ""))
+      const userDetail = localStorage.getItem("@userDetail")
+      setUser(JSON.parse(userDetail))
+
+      
+      if(userDetail){
+        const infoUser = JSON.parse(userDetail)
+        console.log(infoUser.uid)
+        const filmeRef = collection(db, "filmes")
+        const q = query(filmeRef, where("userUid", "==", infoUser.uid))
         const querySnapshort = await getDocs(q)
-
+       
+        let filmesFavoritos = []
         
-        console.log("consulta no BD: ", querySnapshort)
-
-        const filmesFavoritos = []
-
         querySnapshort.forEach((doc) => {
           const filmeData = doc.data();
           filmesFavoritos.push({ ...filmeData, id: doc.id }); // Inclua o ID do documento
         })
         
-        console.log(`Filmes favoritos:`, filmesFavoritos)
         setFavorito(filmesFavoritos)
 
-      } catch (error) {
-        console.error("Erro ao buscar filmes favoritos:", error);
       }
     }
 
@@ -60,7 +62,7 @@ const Favoritos = () => {
           <h3>{filme.title}</h3>
           <div className="favoritos-item-btn">
             <button onClick={() => handleExcluir(filme.id)}>Excluir</button>
-            <button onClick={() => navigate(`/filme/${filme.idAPI}`)}>Informação</button>
+            <button onClick={() => navigate(`/filme/${filme.filmeId}`)}>Informação</button>
           </div>
         </div>
       ))}
